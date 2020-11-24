@@ -9,4 +9,14 @@
 ## Instalação:
 Clone o projeto e rode pelo seguinte comando:
 
-*docker-compose up -d* 
+```
+sudo git clone https://github.com/LuizMoreira/Docker-Laravel.git
+cd Docker-Laravel
+docker-compose up -d
+```
+
+## Imagem publicada no docker-hub:
+
+```
+*luizfqm/laravelex*
+```
