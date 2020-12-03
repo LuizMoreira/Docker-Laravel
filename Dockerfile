@@ -1,11 +1,18 @@
 #instalando a imagem
 FROM php:7.3.6-fpm-alpine3.9
-#instalando o bash e o mysql client
-RUN apk add bash mysql-client
+#instalando o bash, openssl e o mysql client
+RUN apk add --no-cache openssl bash mysql-client
 #instalando extensão do docker php para mysql
 RUN docker-php-ext-install pdo pdo_mysql
 #A instalação do pacote shadow para habilitar o comando usermod
 RUN apk add --no-cache shadow
+
+
+#instalação do dockerrize para que ele consiga gerenciar dependência de serviços
+ENV DOCKERIZE_VERSION v0.6.1
+RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && tar -C /usr/local/bin -xzvf dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
 #assumir que estamos rodando o código dentro do www
 WORKDIR /var/www
